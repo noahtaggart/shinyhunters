@@ -19,16 +19,15 @@ export const HuntCard = ({hunt}) => {
                     {hunt.shiny_charm === true ? 
                     <div className='HuntOdds'>
                         
-                        Hunt Odds: {hunt.method.shiny_charm_odds}  </div>
+                        Hunt Odds: {hunt.method.shiny_charm_odds_fraction}  </div>
                         :
                         <div className='HuntOdds'>
                         
-                        Hunt Odds: {hunt.method.default_odds}  </div>
+                        Hunt Odds: {hunt.method.default_odds_fraction}  </div>
                         }                    
                 </div>
                 <div className='HuntTrainerBlock'>
-                    caught by {hunt.trainer.user.username}
-                    in {hunt.game.title} using the {hunt.method.name} method
+                    caught by {hunt.trainer.user.username} in  {hunt.game.title} using the {hunt.method.name} method
                 </div>
             </div>
         </>
