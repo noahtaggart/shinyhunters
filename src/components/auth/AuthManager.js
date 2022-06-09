@@ -1,5 +1,8 @@
+import Settings from "../repositories/Settings"
+
+
 export const registerUser = (user) => {
-  return fetch("http://localhost:8000/register", {
+  return fetch(`${Settings.remoteURL}/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -11,7 +14,7 @@ export const registerUser = (user) => {
 }
 
 export const loginUser = (user) => {
-  return fetch("http://127.0.0.1:8000/login", {
+  return fetch(`${Settings.remoteURL}/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
