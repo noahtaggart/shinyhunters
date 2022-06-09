@@ -1,22 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
-export const HuntCard = (hunt) => {
-    const [shinyCharmOdds, setShinyCharmOdds] = useState()
-    const [defaultOdds, setDefaultOdds] = useState()
-
-    useEffect(() => {
-    var Fraction = require('fractional').Fraction
-    .then(setShinyCharmOdds(new Fraction(hunt?.method.shiny_charm_odds)).toString())
-    .then(setDefaultOdds(new Fraction(hunt?.method.default_odds)).toString())
-    }, [hunt])
-
+export const HuntCard = ({hunt}) => {
 
     return (
     
         <>
             <div key={`huntNumber--${hunt.id}`} className='huntCard'>
                 <div className='HuntImageBlock'>
-                    <div className='PokemonHuntImage'><img src={hunt.pokemon.default_sprite} />
+                    <div className='PokemonHuntImage'><img src={hunt?.pokemon.default_sprite} />
                     </div>
                     <div className='PokemonHuntSpecies'>{hunt.pokemon.name}
                     </div>
@@ -28,11 +19,11 @@ export const HuntCard = (hunt) => {
                     {hunt.shiny_charm === true ? 
                     <div className='HuntOdds'>
                         
-                        Hunt Odds: {shinyCharmOdds}  </div>
+                        Hunt Odds: {hunt.method.shiny_charm_odds}  </div>
                         :
                         <div className='HuntOdds'>
                         
-                        Hunt Odds: {defaultOdds}  </div>
+                        Hunt Odds: {hunt.method.default_odds}  </div>
                         }                    
                 </div>
                 <div className='HuntTrainerBlock'>

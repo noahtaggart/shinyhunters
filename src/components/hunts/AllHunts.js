@@ -11,10 +11,12 @@ export const AllHunts = () => {
             .then(setHunts)
     }, []
     )
-
+    
+    
     return <>
     {allHunts.length > 0 ? 
         allHunts.map((hunt) => {
+          
             return <HuntCard hunt={hunt} />})
     :""}
 
