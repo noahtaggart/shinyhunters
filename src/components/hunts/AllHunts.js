@@ -14,11 +14,10 @@ export const AllHunts = () => {
     
     
     return <>
-    {allHunts.length > 0 ? 
-        allHunts.map((hunt) => {
+  
+        {allHunts.map((hunt) => {
           
-            return <HuntCard hunt={hunt} />})
-    :""}
+            return <HuntCard hunt={hunt} />})}
 
     </>
 
