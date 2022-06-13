@@ -8,7 +8,8 @@ export const NavBar = () => {
     <nav>
       <Link to="/">Home</Link>
       <Link to='/subscriptions'>Subscriptions</Link>
-      <Link to='/trainers'>Trainers</Link>
+      <Link to='/trainers'>Other Trainers</Link>
+      <Link to='/personal-trainer-card'>Trainer Card</Link>
       {
         localStorage.getItem("auth_token") !== null ?
           <button onClick={() => {
