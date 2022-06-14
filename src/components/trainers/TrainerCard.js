@@ -4,6 +4,7 @@ import { UserContext } from '../contexts/UserContext'
 import { createPhoto, newSubscribe, removeSub } from './TrainerManager'
 import trainerred from '../images/trainerred.webp'
 import Settings from '../repositories/Settings'
+import { Link } from 'react-router-dom'
 
 export const TrainerCard = ({ trainer, edit }) => {
     const { currentUser } = useContext(UserContext)
@@ -39,7 +40,7 @@ export const TrainerCard = ({ trainer, edit }) => {
                     {trainer.profileImageUrl.photo === null? <img className='PokemonTrainerImage' src={trainerred} alt={'default trainer image'} height='150'/>:
                     <img className='PokemonTrainerImage' src={`${Settings.remoteURL}${trainer.profileImageUrl.photo}`} height='150' alt={`${trainer.user.username} profile image`}/>
                     }
-                    <div className='TrainerUsername'>{trainer.user.username}
+                    <div className='TrainerUsername'><Link to={`/trainers/${trainer.user.id}`}>{trainer.user.username}</Link>
                     </div>
                     <div className='TrainerBio'>{trainer.bio}</div>
                     {trainer.id === currentUser.id ? "" :
