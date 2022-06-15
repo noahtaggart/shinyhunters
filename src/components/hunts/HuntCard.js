@@ -1,10 +1,13 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { HuntStateContext } from '../contexts/HuntStateContext'
 import { UserContext } from '../contexts/UserContext'
 import remove from "../images/remove.png"
+import { deleteHunt } from './HuntManager'
 
 export const HuntCard = ({hunt}) => {
     const { currentUser } = useContext(UserContext)
+    const { huntState, setHuntState } = useContext(HuntStateContext)
 
 
     return (
@@ -12,7 +15,8 @@ export const HuntCard = ({hunt}) => {
         <>
         <br></br>
             {currentUser.id === hunt.trainer.id? 
-            <button className='DeleteButton'><img src={remove} alt={'remove hunt'}/></button>
+            <img width={15} src={remove} alt={'remove hunt'} onClick={()=> deleteHunt(hunt.id).then(() => setHuntState(true))
+            }/>
             :""}
             <div key={`huntNumber--${hunt.id}`} className='huntCard'>
                 <div className='HuntImageBlock'>

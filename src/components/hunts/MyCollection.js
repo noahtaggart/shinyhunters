@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { HuntStateContext } from '../contexts/HuntStateContext'
 import { HuntCard } from './HuntCard'
 import { getCompletedUserHunts, sortHunts } from './HuntManager'
 
 export const Collection = () => {
     const [allHunts, setHunts] = useState([])
     const [sortBy, setSortBy] = useState(0)
+    const { huntState, setHuntState } = useContext(HuntStateContext)
 
 
     useEffect(() => {
@@ -15,7 +17,7 @@ export const Collection = () => {
         else if (sortBy === 0)
         getCompletedUserHunts()
             .then(setHunts)
-    }, [sortBy]
+    }, [sortBy, huntState]
     )
 
 

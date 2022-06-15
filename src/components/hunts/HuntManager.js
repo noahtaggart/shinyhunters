@@ -85,3 +85,12 @@ export const sortHunts = (sortTerm) => {
   })
 .then(res => res.json())
 }
+
+export const deleteHunt = (huntId) => {
+  return fetch(`${Settings.remoteURL}/hunts/${huntId}`, {
+    method: "DELETE",
+    headers: {
+      "Authorization": `Token ${localStorage.getItem("auth_token")}`
+    }
+  })
+}
