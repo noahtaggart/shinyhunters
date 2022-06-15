@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { getAllGames } from '../games/GameManager'
 import { getAllMethods } from '../methods/MethodManager'
 import { getAllPokemon } from '../pokemon/PokemonManager'
@@ -9,6 +10,7 @@ export const NewHunt = () => {
     const [pokemon, setPokemon] = useState([])
     const [games, setGames] = useState([])
     const [methods, setMethods] = useState([])
+    const history = useHistory()
 
     useEffect(()=> {
         getAllPokemon()
@@ -103,6 +105,11 @@ export const NewHunt = () => {
         </form>
         <button onClick={() => {
             createNewHunt(newHunt)
+            .then((res) => {
+                history.push(`/current-hunts/${res.id}`)
+              })
+            
+            
         }}>Start</button>
         </>
     )

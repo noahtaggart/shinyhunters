@@ -1,7 +1,17 @@
+
 import Settings from "../repositories/Settings"
+
 
 export const getAllHunts = () => {
     return fetch(`${Settings.remoteURL}/hunts`, {
+        headers: {
+          "Authorization": `Token ${localStorage.getItem("auth_token")}`
+        }
+      })
+    .then(res => res.json())
+}
+export const getSingleHunt = (huntId) => {
+    return fetch(`${Settings.remoteURL}/hunts/${huntId}`, {
         headers: {
           "Authorization": `Token ${localStorage.getItem("auth_token")}`
         }
@@ -46,4 +56,23 @@ export const createNewHunt = (newHunt) => {
       body: JSON.stringify(newHunt)
     })
     .then(res => res.json())
+    
+}
+
+export const addEncounter = (huntId) => {
+  return fetch(`${Settings.remoteURL}/hunts/${huntId}/add_encounter`, {
+    method: 'PUT',
+    headers: {
+      "Authorization": `Token ${localStorage.getItem("auth_token")}`,
+    },
+  })
+}
+
+export const completeHunt = (huntId) => {
+  return fetch(`${Settings.remoteURL}/hunts/${huntId}/complete_hunt`, {
+    method: 'PUT',
+    headers: {
+      "Authorization": `Token ${localStorage.getItem("auth_token")}`,
+    },
+  })
 }
