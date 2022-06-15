@@ -76,3 +76,12 @@ export const completeHunt = (huntId) => {
     },
   })
 }
+
+export const sortHunts = (sortTerm) => {
+  return fetch(`${Settings.remoteURL}/hunts/user_completed?${sortTerm}`, {
+    headers: {
+      "Authorization": `Token ${localStorage.getItem("auth_token")}`
+    }
+  })
+.then(res => res.json())
+}
