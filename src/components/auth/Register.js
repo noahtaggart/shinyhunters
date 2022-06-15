@@ -10,6 +10,7 @@ export const Register = () => {
   const email = useRef()
   const lastName = useRef()
   const firstName = useRef()
+  const bio = useRef()
   const history = useHistory()
 
   const handleRegister = (e) => {
@@ -20,7 +21,8 @@ export const Register = () => {
       "password": password.current.value,
       "email": email.current.value,
       "last_name": lastName.current.value,
-      "first_name": firstName.current.value
+      "first_name": firstName.current.value,
+      "bio": bio.current.value
     }
 
     registerUser(newUser).then(res => {
@@ -56,6 +58,10 @@ return (
       <fieldset>
         <label htmlFor="inputPassword"> Password </label>
         <input ref={password} type="password" name="password" placeholder="Password" required />
+      </fieldset>
+      <fieldset>
+        <label htmlFor="inputBio"> Bio </label>
+        <textarea ref={bio} type="bio" name="bio" placeholder="Your trainer bio" />
       </fieldset>
       <fieldset>
         <button type="submit">Register</button>

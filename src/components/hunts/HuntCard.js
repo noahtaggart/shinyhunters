@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export const HuntCard = ({hunt}) => {
 
@@ -26,9 +27,11 @@ export const HuntCard = ({hunt}) => {
                         Hunt Odds: {hunt.method.default_odds_fraction}  </div>
                         }                    
                 </div>
+                {hunt.completed === true ? 
                 <div className='HuntTrainerBlock'>
-                    caught by {hunt.trainer.user.username} in  {hunt.game.title} using the {hunt.method.name} method
+                    caught by <Link to={`/trainers/${hunt.trainer.user.id}`}>{hunt.trainer.user.username}</Link> in  {hunt.game.title} using the {hunt.method.name} method
                 </div>
+                :<div className='HuntTrainerBlock'>Pokemon {hunt.game.title} using the {hunt.method.name} method</div>}
             </div>
         </>
     )

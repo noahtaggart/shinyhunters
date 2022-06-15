@@ -4,6 +4,8 @@ import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
+import { UserProvider } from "./contexts/UserContext"
+import { TrainerStateProvider } from "./contexts/TrainerStateContext"
 
 export const App = () => (
     <>
@@ -11,8 +13,12 @@ export const App = () => (
             if (localStorage.getItem("auth_token")) {
                 return <>
                     <Route>
-                        <NavBar />
-                        <ApplicationViews />
+                        <TrainerStateProvider>
+                            <UserProvider>
+                                <NavBar />
+                                <ApplicationViews />
+                            </UserProvider>
+                        </TrainerStateProvider>
                     </Route>
                 </>
             } else {

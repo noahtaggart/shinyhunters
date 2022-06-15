@@ -7,7 +7,11 @@ export const NavBar = () => {
   return (
     <nav>
       <Link to="/">Home</Link>
-      <Link to='/subscriptions'>Subscriptions</Link>
+      <Link to='/subscriptions'>Subscription Feed</Link>
+      <Link to='/trainers'>Other Trainers</Link>
+      <Link to='/personal-trainer-card'>Trainer Card</Link>
+      <Link to='/collection'>Collection</Link>
+      <Link to='/current-hunts'>Hunting</Link>
       {
         localStorage.getItem("auth_token") !== null ?
           <button onClick={() => {
