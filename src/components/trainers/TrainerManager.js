@@ -48,3 +48,12 @@ export const createPhoto = (photo) => {
   })
       .then(response => response.json())
 }
+
+export const searchTrainers = (searchTerm) => {
+  return fetch(`${Settings.remoteURL}/trainers?search_name=${searchTerm}`, {
+  headers: {
+    "Authorization": `Token ${localStorage.getItem("auth_token")}`
+  }
+})
+.then(res => res.json())
+}
