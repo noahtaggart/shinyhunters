@@ -4,6 +4,7 @@ import { AllHunts } from "./hunts/AllHunts"
 import { CurrentHunts } from "./hunts/CurrentHunts"
 import { Collection } from "./hunts/MyCollection"
 import { NewHunt } from "./hunts/NewHunt"
+import { SingleHunt } from "./hunts/SingleHunt"
 import { Subscriptions } from "./hunts/Subscriptions"
 import { AllTrainers } from "./trainers/AllTrainers"
 import { MyTrainerCard } from "./trainers/MyTrainerCard"
@@ -34,6 +35,9 @@ export const ApplicationViews = () => {
         </Route>
         <Route exact path='/new-hunt'>
             <NewHunt />
+        </Route>
+        <Route exact path='/current-hunts/:huntId(\d+)'>
+            <SingleHunt />
         </Route>
     </>
 }

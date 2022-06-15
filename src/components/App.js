@@ -6,6 +6,7 @@ import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { UserProvider } from "./contexts/UserContext"
 import { TrainerStateProvider } from "./contexts/TrainerStateContext"
+import { HuntStateProvider } from "./contexts/HuntStateContext"
 
 export const App = () => (
     <>
@@ -13,12 +14,15 @@ export const App = () => (
             if (localStorage.getItem("auth_token")) {
                 return <>
                     <Route>
-                        <TrainerStateProvider>
-                            <UserProvider>
-                                <NavBar />
-                                <ApplicationViews />
-                            </UserProvider>
-                        </TrainerStateProvider>
+                        <HuntStateProvider>
+
+                            <TrainerStateProvider>
+                                <UserProvider>
+                                    <NavBar />
+                                    <ApplicationViews />
+                                </UserProvider>
+                            </TrainerStateProvider>
+                        </HuntStateProvider>
                     </Route>
                 </>
             } else {

@@ -13,13 +13,22 @@ export const CurrentHunts = () => {
     }, []
     )
 
-
+    const styledLink = {
+    color: "black",
+    textDecoration: "none"}
+    
+    
     return <>
-        <Link to='/new-hunt'>New Hunt</Link>
+        <Link  to='/new-hunt'>New Hunt</Link>
         {allHunts.length >= 1 ?
             allHunts.map((hunt) => {
 
-                    return <HuntCard hunt={hunt} />
+                    return <>
+                    <Link style={styledLink}className='CurrentHuntLink' to={`/current-hunts/${hunt.id}`}>
+                    <HuntCard hunt={hunt} />
+                    </Link>
+                    
+                    </>
                 })
             :
             <p>This user has no ongoing hunts</p>
