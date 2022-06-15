@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../contexts/UserContext'
+import remove from "../images/remove.png"
 
 export const HuntCard = ({hunt}) => {
+    const { currentUser } = useContext(UserContext)
+
 
     return (
     
         <>
+        <br></br>
+            {currentUser.id === hunt.trainer.id? 
+            <button className='DeleteButton'><img src={remove} alt={'remove hunt'}/></button>
+            :""}
             <div key={`huntNumber--${hunt.id}`} className='huntCard'>
                 <div className='HuntImageBlock'>
                     <div className='PokemonHuntImage'><img src={hunt?.pokemon.default_sprite} />
