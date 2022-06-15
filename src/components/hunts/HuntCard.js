@@ -30,6 +30,7 @@ export const HuntCard = ({hunt}) => {
                 {hunt.completed === true ? 
                 <div className='HuntTrainerBlock'>
                     caught by <Link to={`/trainers/${hunt.trainer.user.id}`}>{hunt.trainer.user.username}</Link> in  {hunt.game.title} using the {hunt.method.name} method
+                    <p>Caught on {hunt.date_completed}</p>
                 </div>
                 :<div className='HuntTrainerBlock'>Pokemon {hunt.game.title} using the {hunt.method.name} method</div>}
             </div>

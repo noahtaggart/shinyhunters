@@ -6,7 +6,7 @@ import { getAllTrainers, searchTrainers } from './TrainerManager'
 export const AllTrainers = () => {
     const [allTrainers, setTrainers] = useState([])
     const {trainerState, setTrainerState } = useContext(TrainerStateContext)
-    const [searchTerm, setSearchTerm] = useState()
+    const [searchTerm, setSearchTerm] = useState("")
 
 
 
@@ -15,7 +15,7 @@ export const AllTrainers = () => {
             searchTrainers(searchTerm)
                 .then(setTrainers)
         }
-        else if (searchTerm === "") {
+        else if (searchTerm === "" ) {
             getAllTrainers()
             .then(setTrainers)
         }
