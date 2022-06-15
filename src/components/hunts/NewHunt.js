@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { getAllGames } from '../games/GameManager'
 import { getAllMethods } from '../methods/MethodManager'
 import { getAllPokemon } from '../pokemon/PokemonManager'
+import { createNewHunt } from './HuntManager'
 
 export const NewHunt = () => {
-    const [newHunt, setNewHunt] = useState({pokemon:null})
+    const [newHunt, setNewHunt] = useState({pokemon:null, shiny_charm:false})
     const [pokemon, setPokemon] = useState([])
     const [games, setGames] = useState([])
     const [methods, setMethods] = useState([])
@@ -81,11 +82,28 @@ export const NewHunt = () => {
             </fieldset>
             <fieldset>
                 <label htmlFor='shinycharm'>Shiny Charm</label>
-                <input type='checkbox' value='ShinyCharmBox'/>
+                <input type='checkbox' checked={newHunt.shiny_charm} onChange={(e) => {
+                    const copy = {...newHunt}
+                    copy.shiny_charm = e.target.checked
+                    setNewHunt(copy)}}/>
                 
             </fieldset>
+            {newHunt.method ?
+                newHunt.shiny_charm === false? 
+            <div className='odds'>
+                Odds: {(methods.find(method => method.id === newHunt.method).default_odds_fraction)}
+            </div>
+            :
+            <div className='odds'>
+                Odds: {(methods.find(method => method.id === newHunt.method).shiny_charm_odds_fraction)}
+            </div>
+            :""}
+            
             
         </form>
+        <button onClick={() => {
+            createNewHunt(newHunt)
+        }}>Start</button>
         </>
     )
 

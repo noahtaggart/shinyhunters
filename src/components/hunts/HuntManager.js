@@ -34,3 +34,16 @@ export const getOngoingUserHunts = () => {
   })
 .then(res => res.json())
 }
+
+export const createNewHunt = (newHunt) => {
+  return fetch(`${Settings.remoteURL}/hunts`, {
+      method: 'POST',
+      headers: {
+        "Authorization": `Token ${localStorage.getItem("auth_token")}`,
+        "Content-Type": "application/json",
+      "Accept": "application/json"
+      },
+      body: JSON.stringify(newHunt)
+    })
+    .then(res => res.json())
+}
