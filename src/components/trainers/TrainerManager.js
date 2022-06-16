@@ -57,3 +57,15 @@ export const searchTrainers = (searchTerm) => {
 })
 .then(res => res.json())
 }
+
+export const submitEditTrainer = (editedTrainer ) => {
+  return fetch(`${Settings.remoteURL}/trainers/${editedTrainer.id}`, {
+    method: `PUT`, 
+    headers:{
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("auth_token")}`
+    },
+    body: JSON.stringify(editedTrainer)
+})
+    .then(response => response.json())
+}

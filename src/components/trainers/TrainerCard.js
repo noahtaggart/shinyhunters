@@ -1,7 +1,7 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { TrainerStateContext } from '../contexts/TrainerStateContext'
 import { UserContext } from '../contexts/UserContext'
-import { createPhoto, newSubscribe, removeSub } from './TrainerManager'
+import { createPhoto, newSubscribe, removeSub, submitEditTrainer } from './TrainerManager'
 import trainerred from '../images/trainerred.webp'
 import Settings from '../repositories/Settings'
 import { Link } from 'react-router-dom'
@@ -9,10 +9,11 @@ import { Link } from 'react-router-dom'
 export const TrainerCard = ({ trainer, edit }) => {
     const { currentUser } = useContext(UserContext)
     const {trainerState, setTrainerState } = useContext(TrainerStateContext)
-    const bio = useRef()
-    const username = useRef()
     const [base64ImageState, setBase64ImageState] = useState()
     const [changePic, setChangePic] = useState(false)
+    const [editUser, setEditUser] = useState(
+        )
+    
 
     const getBase64 = (file, callback) => {
         const reader = new FileReader();
@@ -29,6 +30,16 @@ export const TrainerCard = ({ trainer, edit }) => {
         });
     }
 
+    useEffect(() => {
+        if (trainer) {
+
+            const copy = {}
+            copy.bio = trainer.bio
+            copy.username = trainer.user.username
+            copy.id = trainer.id
+            setEditUser(copy)
+        }
+    }, [trainer])
 
     const uneditable = () => {
         return (<>
@@ -40,9 +51,14 @@ export const TrainerCard = ({ trainer, edit }) => {
                     {trainer.profileImageUrl.photo === null? <img className='PokemonTrainerImage' src={trainerred} alt={'default trainer image'} height='150'/>:
                     <img className='PokemonTrainerImage' src={`${Settings.remoteURL}${trainer.profileImageUrl.photo}`} height='150' alt={`${trainer.user.username} profile image`}/>
                     }
-                    <div className='TrainerUsername'><Link to={`/trainers/${trainer.user.id}`}>{trainer.user.username}</Link>
+                    {trainer.id != currentUser.id? <><div className='TrainerUsername'><Link to={`/trainers/${trainer.user.id}`}>{trainer.user.username}</Link>
                     </div>
-                    <div className='TrainerBio'>{trainer.bio}</div>
+                    <div className='TrainerBio'>{trainer.bio}</div></> 
+                    :
+                    <><div className='TrainerUsername'><Link to={`/personal-trainer-card`}>{trainer.user.username}</Link>
+                    </div>
+                    <div className='TrainerBio'>{trainer.bio}</div></> }
+                    
                     {trainer.id === currentUser.id ? "" :
                     <>
                         {trainer.is_subscribed === false ?
@@ -86,11 +102,23 @@ export const TrainerCard = ({ trainer, edit }) => {
                             
                             </>}
                             <br></br>
-                    <input ref={username} type='text' name='username' value={trainer.user.username}/>
+                    <input onChange={(e) => {
+                        const copy = {...editUser}
+                        copy.username = e.target.value
+                        setEditUser(copy)
+                    }} type='text' name='username' defaultValue={trainer.user.username}/>
                     <br></br>
                     
 
-                    <textarea ref={bio} type='bio' className='TrainerBio'>{trainer.bio}</textarea>.
+                    <textarea onChange={(e) => {
+                        const copy = {...editUser}
+                        copy.bio = e.target.value
+                        setEditUser(copy)
+                    }} type='bio' className='TrainerBio'>{trainer.bio}</textarea>.
+
+                    <button onClick={() => {
+                        submitEditTrainer(editUser)
+                    }}>Save Changes?</button>
 
                     {trainer.id === currentUser.id ? "" :
                     <>

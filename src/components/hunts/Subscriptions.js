@@ -12,9 +12,11 @@ export const Subscriptions = () => {
     )
 
     return <>
-        {subHunts.map((hunt) => {
+    {subHunts.length >= 1?
+        subHunts.map((hunt) => {
             return <HuntCard hunt={hunt} />
-        })}
+        })
+    :<p>You're currently not subscribe to anyone</p>}
     
     </>
 
