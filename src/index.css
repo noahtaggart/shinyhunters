@@ -1,18 +1,105 @@
+@import 'bulma/css/bulma.css';
+
+
+.TrainerCard {
+  display:flex;
+  background-color: whitesmoke !important;
+  width: 250px;
+  min-height:410px;
+  border-radius: 15px;align-items: center;
+  flex-direction: column;
+  margin: .5em;
+  text-align: center;
+  margin-bottom: .5em;
+}
+.HuntCard {
+  display:flex;
+  background-color: whitesmoke !important;
+  width: 250px;
+  height: 410px;
+  border-radius: 15px;align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: .5em;
+  margin: .5em;
+}
+.HuntSetup {
+  background-color: whitesmoke !important;
+  border-radius: 15px;align-items: center;
+  padding: 10px;
+  justify-content: space-evenly;
+}
+
+button {
+  margin-bottom: .5em;
+}
+
+
+.TrainerImageBlock {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.HuntTrainerBlock {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+
+
+img.RemoveButton {
+  margin-left: auto;
+  margin-right: .5em;
+  margin-top: .5em;
+}
+.EditButton {
+  display:flex;
+  margin-left: auto;
+  margin-right: .5em;
+  margin-top: .5em;
+}
+
+.TrainerListBlock {
+  display: flex;
+  flex-direction: row ;
+  flex-wrap: wrap;
+}
+.HuntListBlock {
+  display: flex;
+  flex-direction: row ;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+p {
+  margin: .5em;
+}
+
+.PokemonTrainerImage {
+  max-height:150px;
+  max-width: 225px;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; 
+  background-color: #02befd;
+  background-size: cover;
+  min-height: 99vh;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
 }
 
 * {
-  background-color: grey;
+  
+  margin: .1em
 };
 

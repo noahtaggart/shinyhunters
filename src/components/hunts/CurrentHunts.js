@@ -15,27 +15,32 @@ export const CurrentHunts = () => {
 
     const styledLink = {
     color: "black",
-    textDecoration: "none"}
+    textDecoration: "none",
+marginTop:"-1 rem",
+marginBottom:'-1 rem'}
     
     
     return <>
-        <Link  to='/new-hunt'>New Hunt</Link>
+        <button><Link style={styledLink} to='/new-hunt'>New Hunt</Link></button>
+        <div className='HuntListBlock'>
+
         {allHunts.length >= 1 ?
             allHunts.map((hunt) => {
-
-                    return <>
+                
+                return <>
                     <Link style={styledLink}className='CurrentHuntLink' to={`/current-hunts/${hunt.id}`}>
                     <HuntCard hunt={hunt} />
                     </Link>
                     
                     </>
                 })
-            :
-            <p>This user has no ongoing hunts</p>
+                :
+                <p>This user has no ongoing hunts</p>
                 
             }
 
         
+            </div>
     </>
 
 }

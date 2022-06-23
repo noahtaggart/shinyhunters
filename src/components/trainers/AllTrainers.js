@@ -5,7 +5,7 @@ import { getAllTrainers, searchTrainers } from './TrainerManager'
 
 export const AllTrainers = () => {
     const [allTrainers, setTrainers] = useState([])
-    const {trainerState, setTrainerState } = useContext(TrainerStateContext)
+    const {trainerState } = useContext(TrainerStateContext)
     const [searchTerm, setSearchTerm] = useState("")
 
 
@@ -34,11 +34,13 @@ export const AllTrainers = () => {
                 }}/>
                 
             </div>
+    <div className='TrainerListBlock'>
 
         {allTrainers.map((trainer) => {
-          
+            
             return <TrainerCard trainer={trainer} />})}
 
+            </div>
     </>
 
 }

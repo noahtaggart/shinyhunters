@@ -19,9 +19,9 @@ export const MyTrainerCard = () => {
 
     return <>
         {editCard === false ? 
-        <button onClick={() => setEditCard(true)}>Edit</button>
+        <button className='EditButton' onClick={() => setEditCard(true)}>Edit</button>
         :
-        <button onClick={() => setEditCard(false)}>Done Editing</button>}
+        <button className='EditButton' onClick={() => setEditCard(false)}>Done Editing</button>}
         <TrainerCard trainer={trainer} edit={editCard} />
     </>
 

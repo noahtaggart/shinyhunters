@@ -14,11 +14,13 @@ export const AllHunts = () => {
     
     
     return <>
-  
+        <div className='HuntListBlock'>
+
         {allHunts.map((hunt) => {
-          
+            
             return <HuntCard hunt={hunt} />})}
 
+            </div>
     </>
 
 }

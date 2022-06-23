@@ -12,12 +12,15 @@ export const Subscriptions = () => {
     )
 
     return <>
+    <div className='HuntListBlock'>
+
     {subHunts.length >= 1?
         subHunts.map((hunt) => {
             return <HuntCard hunt={hunt} />
         })
-    :<p>You're currently not subscribe to anyone</p>}
+        :<p>You're currently not subscribe to anyone</p>}
     
+        </div>
     </>
 
 
