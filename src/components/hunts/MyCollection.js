@@ -36,16 +36,20 @@ export const Collection = () => {
             <option value={"start_date_desc"}>Date Started ▼</option>
 
         </select>
+
+        <div className='HuntListBlock'>
+
         {allHunts.length >= 1 ?
             allHunts.map((hunt) => {
-
-                    return <HuntCard hunt={hunt} />
-                })
+                
+                return <HuntCard hunt={hunt} />
+            })
             :
             <p>This user has no completed hunts</p>
-                
-            }
+            
+        }
 
+        </div>
         
     </>
 

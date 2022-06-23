@@ -24,14 +24,16 @@ export const NewHunt = () => {
 
     return (
         <>
+            <div className='HuntSetup'>
         <form>
+
             <h3>
                 Hunt Setup
             </h3>
             
             {newHunt.pokemon !=null ? 
                 
-            <div className='PokemonImage'>
+                <div className='PokemonImage'>
                 <img src={(pokemon.find(poke => poke.id === newHunt.pokemon)).default_sprite} alt={pokemon.name}/>
             </div>:""}
 
@@ -92,7 +94,7 @@ export const NewHunt = () => {
             </fieldset>
             {newHunt.method ?
                 newHunt.shiny_charm === false? 
-            <div className='odds'>
+                <div className='odds'>
                 Odds: {(methods.find(method => method.id === newHunt.method).default_odds_fraction)}
             </div>
             :
@@ -101,16 +103,17 @@ export const NewHunt = () => {
             </div>
             :""}
             
-            
         </form>
-        <button onClick={() => {
+            <button onClick={() => {
             createNewHunt(newHunt)
             .then((res) => {
                 history.push(`/current-hunts/${res.id}`)
-              })
+            })
             
             
         }}>Start</button>
+        
+        </div>
         </>
     )
 

@@ -14,11 +14,11 @@ export const HuntCard = ({hunt}) => {
     
         <>
         <br></br>
+            <div key={`huntNumber--${hunt.id}`} className='HuntCard'>
             {currentUser.id === hunt.trainer.id? 
-            <img width={15} src={remove} alt={'remove hunt'} onClick={()=> deleteHunt(hunt.id).then(() => setHuntState(true))
+            <img className='RemoveButton' width={15} src={remove} alt={'remove hunt'} onClick={()=> deleteHunt(hunt.id).then(() => setHuntState(true))
             }/>
             :""}
-            <div key={`huntNumber--${hunt.id}`} className='huntCard'>
                 <div className='HuntImageBlock'>
                     <div className='PokemonHuntImage'><img src={hunt?.pokemon.default_sprite} />
                     </div>

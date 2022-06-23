@@ -7,7 +7,7 @@ import { getTrainer } from './TrainerManager'
 export const SingleTrainer = () => {
     const [trainer, setTrainer] = useState()
     const {trainerId} = useParams()
-    const {trainerState, setTrainerState } = useContext(TrainerStateContext)
+    const {trainerState } = useContext(TrainerStateContext)
 
 
 

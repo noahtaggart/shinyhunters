@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { TrainerStateContext } from '../contexts/TrainerStateContext'
 import { UserContext } from '../contexts/UserContext'
 import { createPhoto, newSubscribe, removeSub, submitEditTrainer } from './TrainerManager'
@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 export const TrainerCard = ({ trainer, edit }) => {
     const { currentUser } = useContext(UserContext)
-    const {trainerState, setTrainerState } = useContext(TrainerStateContext)
+    const { setTrainerState } = useContext(TrainerStateContext)
     const [base64ImageState, setBase64ImageState] = useState()
     const [changePic, setChangePic] = useState(false)
     const [editUser, setEditUser] = useState(
@@ -48,10 +48,10 @@ export const TrainerCard = ({ trainer, edit }) => {
         {trainer ? 
             <div key={`trainerNumber--${trainer.id}`} className='TrainerCard'>
                 <div className='TrainerImageBlock'>
-                    {trainer.profileImageUrl.photo === null? <img className='PokemonTrainerImage' src={trainerred} alt={'default trainer image'} height='150'/>:
-                    <img className='PokemonTrainerImage' src={`${Settings.remoteURL}${trainer.profileImageUrl.photo}`} height='150' alt={`${trainer.user.username} profile image`}/>
+                    {trainer.profileImageUrl.photo === null? <img className='PokemonTrainerImage' src={trainerred} alt={'default trainer'} height='150'/>:
+                    <img className='PokemonTrainerImage' src={`${Settings.remoteURL}${trainer.profileImageUrl.photo}`} height='150' alt={`${trainer.user.username} profile`}/>
                     }
-                    {trainer.id != currentUser.id? <><div className='TrainerUsername'><Link to={`/trainers/${trainer.user.id}`}>{trainer.user.username}</Link>
+                    {trainer.id !== currentUser.id? <><div className='TrainerUsername'><Link to={`/trainers/${trainer.user.id}`}>{trainer.user.username}</Link>
                     </div>
                     <div className='TrainerBio'>{trainer.bio}</div></> 
                     :
@@ -83,9 +83,11 @@ export const TrainerCard = ({ trainer, edit }) => {
     const editable = () => {
         return (
             <>
+            <div className='TrainerCard'>
+
                 <form className='TrainerImageBlock'>
-                {trainer.profileImageUrl.photo === null? <img className='PokemonTrainerImage' src={trainerred} alt={'default trainer image'} height='150'/>:
-                    <img className='PokemonTrainerImage' src={`${Settings.remoteURL}${trainer.profileImageUrl.photo}`} height='150' alt={`${trainer.user.username} profile image`}/>
+                {trainer.profileImageUrl.photo === null? <img className='PokemonTrainerImage' src={trainerred} alt={'default trainer'} height='150'/>:
+                    <img className='PokemonTrainerImage' src={`${Settings.remoteURL}${trainer.profileImageUrl.photo}`} height='150' alt={`${trainer.user.username} profile`}/>
                     }
                     {changePic === false ?
                             <button onClick={()=>setChangePic(true)}>Upload New Picture?</button>
@@ -97,7 +99,7 @@ export const TrainerCard = ({ trainer, edit }) => {
                                 photoObject.trainer_image = base64ImageState
                                 photoObject.trainer_id = currentUser.id
                                 createPhoto(photoObject).then(() => setBase64ImageState(undefined))
-
+                                
                             }}>Upload</button>
                             
                             </>}
@@ -124,7 +126,7 @@ export const TrainerCard = ({ trainer, edit }) => {
                     <>
                         {trainer.is_subscribed === false ?
                         <button onClick={() => newSubscribe(trainer.id).then(() =>setTrainerState(true))}>Subscribe</button>
-                    : <button onClick={()=> removeSub(trainer.id).then(() =>setTrainerState(true))}>Unsubscribe</button>}</>}
+                        : <button onClick={()=> removeSub(trainer.id).then(() =>setTrainerState(true))}>Unsubscribe</button>}</>}
                 </form>
                 {trainer.recent_completed_hunt != null ?
                 <>
@@ -138,6 +140,7 @@ export const TrainerCard = ({ trainer, edit }) => {
                 :<p>{trainer.user.username} has no completed hunts yet</p>}
             
 
+                </div>
             </>
         )
     }
